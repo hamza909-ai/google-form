@@ -1,113 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RWSH Admission Form</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            width: 60%;
-            margin: 50px auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-        form p {
-            margin: 15px 0;
-        }
-        input[type="text"], select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        input[type="radio"] {
-            margin-right: 10px;
-        }
-        button {
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        .success {
-            color: green;
-            margin-top: 20px;
-            text-align: center;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RWSH Admission Form</title>
+  <style>
+    /* ---------- General Styles ---------- */
+    body {
+      font-family: 'Poppins', Arial, sans-serif;
+      background: linear-gradient(135deg, #007bff, #00bcd4);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 600px;
+      background-color: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      padding: 30px 25px;
+      animation: fadeIn 0.8s ease-in-out;
+    }
+
+    h1 {
+      text-align: center;
+      color: #007bff;
+      margin-bottom: 25px;
+      font-size: 28px;
+    }
+
+    form p {
+      margin: 15px 0;
+      font-weight: 500;
+      color: #333;
+    }
+
+    input[type="text"],
+    select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      outline: none;
+      transition: all 0.3s ease;
+      font-size: 15px;
+    }
+
+    input[type="text"]:focus,
+    select:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 6px rgba(0, 123, 255, 0.3);
+    }
+
+    input[type="radio"] {
+      margin-right: 8px;
+      transform: scale(1.1);
+    }
+
+    label {
+      margin-right: 15px;
+      color: #555;
+      font-weight: 400;
+    }
+
+    button {
+      width: 100%;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+      transform: translateY(-2px);
+    }
+
+    .success {
+      color: green;
+      margin-top: 20px;
+      text-align: center;
+      font-weight: 600;
+      animation: fadeIn 0.5s ease-in;
+    }
+
+    /* ---------- Responsive Design ---------- */
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+
+      button {
+        font-size: 15px;
+        padding: 12px;
+      }
+    }
+
+    /* ---------- Animation ---------- */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>RWSH Admission — Application Form</h1>
-        <form id="admissionForm">
-            <p>Select your own email<br>
-                <input type="checkbox" id="email1" name="email1" value="example@gmail.com"> example@gmail.com
-            </p>
-            <p>Name<br>
-                <input type="text" id="name" name="name" placeholder="Enter your name" required>
-            </p>
-            <p>Contact No<br>
-                <input type="text" id="contact" name="contact" placeholder="Enter your contact number" required>
-            </p>
-            <p>Address<br>
-                <input type="text" id="address" name="address" placeholder="Enter your address" required>
-            </p>
-            <p>Education<br>
-                <input type="text" id="education" name="education" placeholder="Enter your education" required>
-            </p>
-            <p>Course Select<br>
-                <select id="course" name="course" required>
-                    <option value="">-- Select a Course --</option>
-                    <option value="Graphic Design">Graphic Design</option>
-                    <option value="Web Development">Web Development</option>
-                    <option value="Digital Marketing">Digital Marketing</option>
-                </select>
-            </p>
-            <p>Gender<br>
-                <input type="radio" name="gender" value="Male" required> Male
-                <input type="radio" name="gender" value="Female" required> Female
-            </p>
-            <button type="submit">Submit</button>
-        </form>
-        <p id="message" class="success"></p>
-    </div>
+  <div class="container">
+    <h1>RWSH Admission — Application Form</h1>
+    <form id="admissionForm">
+      <p>Select your email<br>
+        <input type="checkbox" id="email1" name="email1" value="example@gmail.com"> example@gmail.com
+      </p>
 
-    <script>
-        document.getElementById('admissionForm').addEventListener('submit', function(event) {
-            event.preventDefault();
+      <p>Name<br>
+        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+      </p>
 
-            let name = document.getElementById('name').value.trim();
-            let contact = document.getElementById('contact').value.trim();
-            let address = document.getElementById('address').value.trim();
-            let education = document.getElementById('education').value.trim();
-            let course = document.getElementById('course').value;
+      <p>Contact No<br>
+        <input type="text" id="contact" name="contact" placeholder="Enter your contact number" required>
+      </p>
 
-            if (!name || !contact || !address || !education || !course) {
-                alert('Please fill all required fields.');
-                return;
-            }
+      <p>Address<br>
+        <input type="text" id="address" name="address" placeholder="Enter your address" required>
+      </p>
 
-            document.getElementById('message').innerText = 'Form submitted successfully!';
-            document.getElementById('admissionForm').reset();
-        });
-    </script>
+      <p>Education<br>
+        <input type="text" id="education" name="education" placeholder="Enter your education" required>
+      </p>
+
+      <p>Course Select<br>
+        <select id="course" name="course" required>
+          <option value="">-- Select a Course --</option>
+          <option value="Graphic Design">Graphic Design</option>
+          <option value="Web Development">Web Development</option>
+          <option value="Digital Marketing">Digital Marketing</option>
+        </select>
+      </p>
+
+      <p>Gender<br>
+        <label><input type="radio" name="gender" value="Male" required> Male</label>
+        <label><input type="radio" name="gender" value="Female" required> Female</label>
+      </p>
+
+      <button type="submit">Submit Application</button>
+    </form>
+
+    <p id="message" class="success"></p>
+  </div>
+
+  <script>
+    document.getElementById('admissionForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      let name = document.getElementById('name').value.trim();
+      let contact = document.getElementById('contact').value.trim();
+      let address = document.getElementById('address').value.trim();
+      let education = document.getElementById('education').value.trim();
+      let course = document.getElementById('course').value;
+
+      if (!name || !contact || !address || !education || !course) {
+        alert('⚠️ Please fill all required fields.');
+        return;
+      }
+
+      document.getElementById('message').innerText = '✅ Form submitted successfully!';
+      document.getElementById('admissionForm').reset();
+    });
+  </script>
 </body>
 </html>
+
